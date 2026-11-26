@@ -1,0 +1,765 @@
+/* im so fucking fucked */
+:: Kylar Intro Intervene
+<<set $outside to 0>><<set $location to "school">><<schooleffects>><<effects>>
+
+You walk up to the <<person2>><<person>>. Both <<he>> and the dark-haired <<person1>><<person>> stop and look at you. "What you want?" the <<person2>><<person>> says.
+<br><br>
+<<if $speech_attitude is "meek">>
+	You avert your eyes. "L-let <<nnpc_him "Kylar">> go," you say. "Don't be mean."
+<<elseif $speech_attitude is "bratty">>
+	"Let <<nnpc_him "Kylar">> go," you demand. "Or it'll be you up against that locker."
+<<else>>
+	"Stop it," you say. "Bullying is wrong."
+<</if>>
+<br><br>
+The <<person>> regards you for a moment, then laughs. Some of the audience join in. <<He>> releases the dark-haired <<person1>><<personssimple>> collar. "Sure thing," <<person2>><<he>> manages through wheezes. "I don't want any trouble." <<His>> laughter redoubles. <<He>> staggers away.
+<br><br>
+
+The dark-haired <<person1>><<personsimple>> picks up <<his>> bag and starts gathering the contents. "Th-thank you," <<person1>><<he>> stutters. "I-I'm—" <<He>> looks at you, but blushes and looks away. "I'm Kylar." You thought <<he>> was younger than you, but <<he>> seems the same age.
+<<switch $bodysize>>
+	<<case 0>>
+		Even with your small stature, <<hes>> only a little taller than you.
+	<<case 1>>
+		Even with your short height, <<hes>> a little shorter than you.
+	<<case 2>>
+		<<Hes>> just small.
+	<<case 3>>
+		<<Hes>> just quite short compared to you.
+<</switch>>
+<br><br>
+<<He>> turns and runs away, bag in hand.
+<br><br>
+<<endevent>>
+<<link [[Next|Hallways]]>><<set $eventskip to 1>><</link>>
+<br>
+
+:: Kylar Intro Help
+<<set $outside to 0>><<set $location to "school">><<schooleffects>><<effects>>
+
+You kneel and start picking up the <<personssimple>> school supplies, putting them back in <<person1>><<his>> bag. The <<person2>><<person>> soon finishes <<his>> game with the dark-haired <<person1>><<personsimple>>, and drops <<him>> to the ground. <<person2>><<He>> and the audience lose interest and wander off.
+<br><br>
+
+You wait until no one is paying attention to the <<person1>><<personsimple>> anymore, then walk up to <<him>> and hold out <<his>> things. <<He>> steps back as if threatened.
+<<if $speech_attitude is "meek">>
+	"I know what it's like," you say. "But it's okay. Things will be better."
+<<elseif $speech_attitude is "bratty">>
+	"Don't let <<person2>><<him>> get to you," you say. "<<Hes>> not worth it."
+<<else>>
+	"I hope you're okay," you say.
+<</if>>
+<br><br>
+
+"Th-thank you," <<person1>><<he>> stutters. "I-I'm—" <<He>> looks at you, but blushes and looks away. "K-kylar!" You thought <<he>> was younger than you, but <<he>> seems the same age.
+<<switch $bodysize>>
+	<<case 0>>
+		Even with your small stature, <<hes>> only a little taller than you.
+	<<case 1>>
+		Even with your short height, <<hes>> a little shorter than you.
+	<<case 2>>
+		<<Hes>> just small.
+	<<case 3>>
+		<<Hes>> just quite short compared to you.
+<</switch>>
+<br><br>
+<<He>> turns and runs away, bag in hand.
+<br><br>
+<<endevent>>
+<<link [[Next|Hallways]]>><<set $eventskip to 1>><</link>>
+<br>
+
+:: Kylar Intro Ignore
+<<set $outside to 0>><<set $location to "school">><<schooleffects>><<effects>>
+
+You continue on, not wanting to get involved. No one gives you a second glance.
+<br><br>
+
+<<endevent>>
+<<link [[Next|Hallways]]>><<set $eventskip to 1>><</link>>
+<br>
+
+:: Kylar Bedroom 1
+<<set $outside to 0>><<set $location to "home">><<effects>>
+
+<<if $kylar.timer.letter is 30>>
+	You check your wardrobe.
+<<else>> 
+	Your bedroom door is ajar. You peek through the gap. Nothing seems to be amiss, until you look in your wardrobe.
+<</if>>
+
+<<set _stolen to $wardrobe.under_lower.filter(n => n.one_piece != 1 && !n.type.includes("swim")).pluck()>>
+
+<<if _stolen>>
+	<span class="red">Your _stolen.name <<print (_stolen.plural ? "are" : "is")>> missing.</span> You search the floor, but turn up nothing.
+	<<set $wardrobe.under_lower.delete(_stolen)>>
+	<<set $kylarStolenUnderwear to _stolen>>
+	<!-- Note to future developers: you can now use $kylarStolenUnderwear to refer to the underwear that Kylar stole. -->
+<<else>>
+	The clothes are hung in a haphazard manner. Someone took them off and put them back in a hurry.
+<</if>>
+<<gstress>><<stress 3>>
+<br><br>
+
+<<endevent>>
+<<link [[Bedroom|Bedroom]]>><</link>>
+<br>
+
+:: Kylar Bedroom 2
+<<set $outside to 0>><<set $location to "home">><<effects>>
+<<endevent>>
+<<npc Kylar>><<person1>>
+Your bedroom door is ajar. You peek through the gap. Kylar stands beside the window. <<He>> holds your bedding in <<his>> arms. <<Hes>> pressing <<his>> face into it, eyes shut in contentment.
+<br><br>
+
+<<link [[Get angry|Kylar Bedroom Angry]]>><<npcincr Kylar love -10>><</link>><<lllove>>
+<br>
+<<link [[Tease|Kylar Bedroom Tease]]>><<npcincr Kylar love 5>><<npcincr Kylar lust 10>><</link>><<promiscuous1>><<gglove>><<glust>>
+<br>
+<<link [[Sneak away (0:05)|Kylar Bedroom Sneak]]>><<pass 5>><</link>>
+<br>
+
+:: Kylar Bedroom Angry
+<<set $outside to 0>><<set $location to "home">><<effects>>
+<<set $kylarSeen.pushUnique("home")>>
+
+<<if $speech_attitude is "meek">>
+	"Why are you here?" you ask. <<He>> jumps in fright and throws the bedding away. "What are- why were you messing with my stuff?"
+<<elseif $speech_attitude is "bratty">>
+	"Kylar!" you shout. <<He>> jumps in fright and throws the bedding away. "Why are you messing with my things?"
+<<else>>
+	"Creep," you say. <<He>> jumps in fright and throws the bedding away. "You've been messing with my stuff?"
+<</if>>
+<br><br>
+
+Kylar tears up as you speak. "Uuuu...! It's... um, it's r-really not what it looks like...!" <<he>> tries to protest. "I just... um!!" <<He>> hangs <<his>> head and leaves the room.
+<br><br>
+
+<<endevent>>
+<<link [[Bedroom|Bedroom]]>><</link>>
+<br>
+
+:: Kylar Bedroom Tease
+
+<<set $outside to 0>><<set $location to "home">><<effects>>
+<<set $kylarSeen.pushUnique("home")>>
+<<covered>>
+
+<<if $speech_attitude is "meek">>
+	"You could have asked," you say. <<He>> jumps in fright and throws the bedding away. You walk up to <<him>>. "You must really like me."
+<<elseif $speech_attitude is "bratty">>
+	<<if $exposed gte 1>>
+		"Rude," you declare. <<He>> jumps in fright and throws the bedding away. You walk up to <<him>>. "You should ask first. So I have a chance to get dressed."
+	<<else>>
+		"Rude," you declare. <<He>> jumps in fright and throws the bedding away. You walk up to <<him>>. "You should ask first. What if I'd walked in naked?"
+	<</if>>
+<<else>>
+	You laugh. <<He>> jumps in fright and throws the bedding away. You walk up to <<him>>. "You've been playing with my clothes. Maybe you'd like to try them on?"
+<</if>>
+<<promiscuity1>>
+
+"Uh! Um! No, it's...!" <<he>> manages as <<his>> face turns a bright shade of red.
+<br><br>
+
+You push <<him>> onto the bed and sit on <<his>> lap. "I need to get comfy," you say. You wiggle your <<bottom>> against <<his>> crotch. <<He>> stares at you wide-eyed, before squeaking out an apology and shoving you off to then sprint out of the room.
+<br><br>
+<<endevent>>
+
+<<link [[Bedroom|Bedroom]]>><</link>>
+<br>
+
+:: Kylar Bedroom Sneak
+
+<<set $outside to 0>><<set $location to "home">><<effects>>
+
+You sneak from your bedroom and hide around a corner in the hall. You wait. <<He>> doesn't come out. You sneak back to your room and peek through the gap in the door. Kylar isn't there, and the window is wide open.
+<br><br>
+<<endevent>>
+
+<<link [[Bedroom|Bedroom]]>><</link>>
+<br>
+
+:: Kylar Stop
+<<set $outside to 0>><<effects>>
+<<set $kylar_action to "stop">>
+
+You turn to leave. Kylar grasps your wrist. "Uu.. wh-where are you going?" <<he>> says. "D-don't leave..."<<gksuspicion>><<npcincr Kylar rage 1>>
+<br><br>
+
+<<kylarOptions>>
+
+:: Kylar Shake
+<<set $outside to 0>><<effects>>
+<<set $kylar_action to "shake">>
+
+You shake off Kylar's grip and leave. <<He>> watches you with <<his>> fists clenched against <<his>> thighs.
+<br><br>
+
+<<kylarOptionsLeave>>
+
+:: Kylar Tease
+<<set $outside to 0>><<effects>>
+<<set $kylar_action to "tease">>
+<<set _kylar to statusCheck("Kylar")>>
+<<cleareventpool>>
+
+<<if $daily.kylar.libraryInteract is 1 and $bus is "schoollibrary">>
+	/* Ensures the event fires once, avoiding repetition for now */
+	<<set $daily.kylar.libraryInteract to 2>>
+
+	<<addevent "kylarLibraryStalkTease1">>
+	<<runeventpool>>
+
+	<br><br>
+	<<kylarOptions "notext">>
+	<<exit>>
+<</if>>
+<<if _kylarStatus.includes("Love")>>
+	<<if $genderknown.includes("Kylar") and !$worn.lower.type.includes("naked")>>
+		<<addevent "kylarFlirtEventClothesPull">> <!-- defined in Widgets Kylar -->
+	<</if>>
+	<<addinlineevent "kylarFlirtPat">>
+		You pat Kylar's head. <<His>> eyes close in bliss.
+	<</addinlineevent>><<addinlineevent "kylarFlirtWhisper">>
+		You whisper something naughty into Kylar's ear. "Um! N-not here..." <<he>> says, holding back a blissful smile. "S-someone might... hear..."
+	<</addinlineevent>><<addinlineevent "kylarFlirtCheek">>
+		You lick Kylar's cheek. <<He>> trembles before licking you back.
+	<</addinlineevent>><<addinlineevent "kylarFlirtUndies">>
+		<<set _kylarLower to _kylar.clothes.lower.name>>
+		<<if $kylarSeen.includes("commando") or $daily.kylar.undies is true>>
+			You ask to see Kylar's underwear. "Just to make sure you don't have any, of course," you say.
+			<<if _kylarLower.includes("skirt")>>
+				<<He>> blushes, but lifts the side of <<his>> _kylarLower,
+			<<else>>
+				<<He>> blushes, but pulls down the hem of <<his>> _kylarLower,
+			<</if>>
+			revealing
+			<<set _penis to (_kylar.penissize gte 3 ? "a few inches of <<his>> _kylar.penisdesc" : "<<his>> _kylar.penisdesc")>>
+			<<print (_kylar.penis isnot "none" ? (_kylar.vagina isnot "none" ? "<<his>> pussy and _penis" : "_penis") : "<<his>> pussy")>>.
+			<<arousal 100>><<garousal>>
+			<br><br>
+
+			"... I'm not- uh... " <<he>> averts his eyes. "W-wearing any... are you happy...?"
+			<br><br>
+
+			You kiss <<him>> on the cheek and let that speak for itself.
+		<<else>>
+			<<if !$daily.kylar.underwear?.desc>>
+				<<kylarRandomUnderwear>>
+			<</if>>
+
+			You ask to see Kylar's underwear. "Or maybe," you say, "you don't have any on?"
+			<!-- Note for future writers: you COULD use $kylarStolenUnderwear here to reveal kylar is wearing the underwear they stole from the player. -->
+			<<if _kylarLower.includes("skirt")>>
+				<<He>> blushes, but lifts the side of <<his>> _kylarLower to reveal
+			<<else>>
+				<<He>> blushes, but pulls down the hem of <<his>> _kylarLower to reveal
+			<</if>>
+			<<print $daily.kylar.underwear.desc>>.
+			<br><br>
+
+			"Umh.. d-don't tell anyone," <<he>> says. "I-I'm... for your eyes only."
+			<<if hasSexStat("promiscuity", 3) and !$kylarSeen.includes("commando") and ($whitneypantiescheck gte 1 or hasSexStat("exhibitionism", 5) or $kylarSeen.includes("home")) and ($location is "park" or $location is "school")>>
+				<<set _lewdIdea to true>>
+			<</if>>
+		<</if>>
+	<</addinlineevent>><<addinlineevent "kylarFlirtThigh">>
+		You lay your hand on Kylar's inner thigh. <<He>> widens <<his>> legs slightly to allow you better access.
+	<</addinlineevent>><<addinlineevent "kylarFlirtEar">>
+		You blow into Kylar's ear. <<He>> shivers and blows into yours in response.
+		<<if random(0,1)>>
+			"Y-your ears were very sensitive in my dream, ehehe..." <<he>> mutters, mostly to himself. "I guess they're... not as sensitive, in real life..."
+			<<gstress>><<stress 1>>
+			<br>
+		<</if>>
+	<</addinlineevent>><<addinlineevent "kylarFlirtBonk">>
+		You lean in to whisper something naughty in Kylar's ear, but end up bonking your head on <<hers>>. <<He>> had turned to lean in at the same time.
+		<<gpain>><<pain 3>>
+		<br><br>
+		<<He>> quickly checks to make sure you're okay, before you both burst into giggles.
+	<</addinlineevent>><<addinlineevent "kylarFlirtStare">>
+		You cup Kylar's cheek with your hand and stare into <<his>> eyes. <<He>> looks at you for a few seconds, before moving your hand to <<his>> mouth and licking your index finger.
+	<</addinlineevent>><<addinlineevent "kylarFlirtKink">>
+		<<set _kinkType to random(1,11)>>
+		<<if _kinkType is 11 and $sadism_level gte 1>>
+			<<if $sadism_level gte 3>>
+				You whisper to Kylar that you really like hurting others. When you hit or bite into someone and hear them grunt in pain, you feel a thrill. Even outside of sex, in an actual fight, it fills you with perverse glee. Kylar opens <<his>> mouth, but closes it again. <<He>> doesn't respond.
+			<<else>>
+				You whisper to Kylar that you like hurting others. You feel guilty about it, but with how you've been abused, it feels nice to inflict that pain on someone else. "Um... I-I can lend you my knife... for when we... y'know. Only i-if you want it..." <<he>> says. You're not sure you want to go that far.
+				<<gstress>><<stress 3>>
+				<br>
+			<</if>>
+		<<elseif _kinkType is 10 and $orgasmtrait gte 1>>
+			You whisper to Kylar that you can't be satisfied with just one orgasm. You want two, three, more. Dozens if you have the time to spare. Hundreds if you thought your body could handle it. "Ehe... I can make that happen," <<he>> says. "I promise."
+		<<elseif _kinkType is 9 and $choketrait gte 1>>
+			You whisper to Kylar that you really like being choked, the tighter the better. The feeling of being pleasured while you can't breathe drives you wild. "Uuu... I'll do it if you really want me to..." <<he>> says. "B-but I don't want to hurt you..."
+		<<elseif _kinkType is 8 and $ejactrait gte 1>>
+			You whisper to Kylar that you love being covered in cum. The feeling of being drenched in lewd fluid is somehow calming to you. It makes you feel safe, wanted. It's proof that you're still here. It also just... smells really nice.
+			<<if _kylar.penis isnot "none">>
+				"Uhm... I can make that happen!" <<he>> says. "J-just give me a few... h-hours?"
+			<<else>>
+				<<He>> seems disheartened.
+			<</if>>
+		<<elseif _kinkType is 7 and $molesttrait gte 1>>
+			You whisper to Kylar that even though you wish you weren't molested all the time, part of you is still excited by it. The knowledge that complete strangers are driven to do such things, just because of your body, makes you shiver. Kylar doesn't respond.
+			<<gksuspicion>><<npcincr Kylar rage 1>>
+			<br>
+		<<elseif _kinkType is 6 and $rapetrait gte 1>>
+			You whisper to Kylar that even though you hate all the rapists in town, part of you is still excited by them. Somehow, the feeling of being taken against your will isn't as scary as it used to be. Kylar doesn't respond.
+			<<gksuspicion>><<npcincr Kylar rage 1>>
+			<br>
+		<<elseif _kinkType is 5 and $bestialitytrait gte 1>>
+			You whisper to Kylar that you find <<if isBestialityOnForAnyCreature()>>beasts<<else>>monsters<</if>> almost as good as people, sometimes better. Their instinct-driven, animalistic mating makes you shiver. Kylar doesn't seem to know what to say.
+			<<gksuspicion>><<npcincr Kylar rage 1>>
+			<br>
+		<<elseif _kinkType is 4 and $tentacletrait gte 1>>
+			You whisper to Kylar that you've fantasised about being accosted by a hoard of tentacles to have their way with you. Writhing, thrusting, wrapping around you and using your every hole to obey their primal urges. "I-I wish I could give myself tentacles..." <<he>> says. <<He>> pauses and thinks for a moment, before shaking <<his>> head.
+		<<elseif _kinkType is 3 and $voretrait gte 1>>
+			You whisper to Kylar that you've found yourself swallowed by all sorts of creatures, and that you didn't quite hate it. The flesh rippling against your skin, caressing every inch of your body as you slide down, gives you goosebumps whenever you recall it. Kylar doesn't seem to know what to say.
+		<<elseif _kinkType is 2 and $masochism_level gte 1>>
+			<<if $masochism_level gte 3>>
+				You whisper to Kylar that you really like being hurt. The thought of someone using you, smacking you, spanking you, hitting you, leaving you quivering on the floor, drives you wild. "Um... I-I do want to make you happy... but, like..." <<he>> says, hesitant. "I don't... think I can do that... s-sorry!"
+			<<else>>
+				You whisper to Kylar that you like being hurt. The thought of someone slapping you, or digging their fingernails into you, makes you blush. "Uuu... I'll do it if you really want me to..." <<he>> says. "B-but I don't want to hurt you..."
+			<</if>>
+		<<elseif _kinkType is 1 and $milkdranktrait gte 1>>
+			You whisper to Kylar that you really love breast milk. Besides the obvious appeal of sucking on someone's breast, the milk is always warm, creamy, and delicious.
+			<<if $trauma gte ($traumamax / 5) * 3>>
+				Sometimes, when they stroke the back of your head while you're suckling, it makes you feel wanted. Almost like you're with... You cut yourself off.
+			<</if>>
+			<<if _kylar.pronoun is "m">>
+				<<He>> seems disheartened.
+			<<else>>
+				"Um... I can make that happen!" <<he>> says. "How... how do you lactate, again...?"
+				<<switch _kylar.breastsize>>
+					<<case 0 1 2>>
+					<<He>> begins anxiously tapping <<his>> shirt with both hands, directly above where <<his>> nipples should be. "I might need to get a b-bit bigger first..."
+					<<case 3 4 5>>
+					<<He>> begins openly rubbing <<his>> _kylar.breastsdesc through <<his>> shirt. "Maybe if I keep it up, m-milk will come out?"
+					<<case 6 7 8>>
+					<<He>> begins openly massaging <<his>> _kylar.breastsdesc through <<his>> shirt. "I'm sure I can get m-milk to come out if I keep trying!"
+					<<case 9 10 11 12>>
+					<<He>> begins openly kneading <<his>> _kylar.breastsdesc through <<his>> shirt. "Come on, these things have to be g-good for s-something!"
+				<</switch>>
+			<</if>>
+		<<else>>
+			You whisper to Kylar one of your deepest fantasies.
+			"<<print either("B-before marriage...?","Uuu... I think I can do that,","I think I can make that happen,","You... um, what?","That's... um, perfectly normal,","You too?!","Ehehehe... W-we can if you want...")>>" <<he>> says.
+		<</if>>
+	<</addinlineevent>>
+<<else>>
+	<<if $genderknown.includes("Kylar") and !$worn.lower.type.includes("naked")>>
+		<<addevent "kylarFlirtEventClothesPull">> <!-- defined in Widgets Kylar -->
+	<</if>>
+	<<addinlineevent "kylarTeasePat">>
+		You pat Kylar's head. <<He>> recoils from each touch as if struck. When you stop, <<he>> whispers, "Um! M-more."
+	<</addinlineevent>><<addinlineevent "kylarTeaseWhisper">>
+		You whisper something naughty into Kylar's ear. <<He>> looks away and blushes.
+	<</addinlineevent>><<addinlineevent "kylarTeaseCheek">>
+		You lick Kylar's cheek. <<He>> tenses, but rests <<his>> hand on the spot you touched.
+	<</addinlineevent>><<addinlineevent "kylarTeaseUndies">>
+		You ask Kylar what sort of underwear <<he>> has on. "Or maybe," you say. "You don't have any?" <<He>> trembles.
+	<</addinlineevent>><<addinlineevent "kylarTeaseThigh">>
+		You lay your hand on Kylar's inner thigh. <<He>> flinches and clenches <<his>> legs shut, crushing your hand. "Uu! S-sorry!" <<He>> yelps, opening them again with a red flush on his cheeks.
+		<<gpain>><<pain 3>>
+		<br>
+	<</addinlineevent>><<addinlineevent "kylarTeaseEar">>
+		You blow into Kylar's ear. <<His>> breathing becomes funny for a moment.
+	<</addinlineevent>><<addinlineevent "kylarTeaseBonk">>
+		You whisper something naughty into Kylar's ear. <<He>> shudders.
+	<</addinlineevent>><<addinlineevent "kylarTeaseStare">>
+		You cup Kylar's cheek with your hand and stare into <<his>> eyes. <<He>> stares back at you, like a deer in headlights. You can feel <<him>> trembling, and decide to remove your hand before <<he>> explodes.
+	<</addinlineevent>><<addinlineevent "kylarTeaseKink">>
+		<<set _kinkType to random(1,11)>>
+		<<if _kinkType is 11 and $sadism_level gte 1>>
+			<<if $sadism_level gte 3>>
+				You whisper to Kylar that you really like hurting others. When you hit or bite into someone and hear them grunt in pain, you feel a thrill. Even outside of sex, in an actual fight, it fills you with perverse glee. <<He>> looks away, sweating, clasping a hand to <<his>> chest.
+			<<else>>
+				You whisper to Kylar that you like hurting others. You feel guilty about it, but with how you've been abused, it feels nice to inflict that pain on someone else. <<He>> looks away, blushing.
+			<</if>>
+		<<elseif _kinkType is 10 and $orgasmtrait gte 1>>
+			You whisper to Kylar that you can't be satisfied with just one orgasm. You want two, three, more. Dozens if you have the time to spare. Hundreds if you thought your body could handle it. <<He>> looks away, blushing.
+		<<elseif _kinkType is 9 and $choketrait gte 1>>
+			You whisper to Kylar that you really like being choked, the tighter the better. The feeling of being pleasured while you can't breathe drives you wild. <<He>> looks away, blushing.
+		<<elseif _kinkType is 8 and $ejactrait gte 1>>
+			You whisper to Kylar that you love being covered in cum. The feeling of being drenched in lewd fluid is somehow calming to you. It makes you feel safe, wanted. It's proof that you're still here. It also just... smells really nice.
+			<<He>> looks away, <<print (_kylar.penis isnot "none" ? "blushing" : "frowning")>>.
+		<<elseif _kinkType is 7 and $molesttrait gte 1>>
+			You whisper to Kylar that even though you wish you weren't molested all the time, part of you is still excited by it. The knowledge that complete strangers are driven to do such things, just because of your body, makes you shiver. <<He>> looks away, frowning.
+			<br><br>
+		<<elseif _kinkType is 6 and $rapetrait gte 1>>
+			You whisper to Kylar that even though you hate all the rapists in town, part of you is still excited by them. Somehow, the feeling of being taken against your will isn't as scary as it used to be. <<He>> looks away, frowning.
+			<br><br>
+		<<elseif _kinkType is 5 and $bestialitytrait gte 1>>
+			You whisper to Kylar that you find <<print (isBestialityOnForAnyCreature() ? "beasts" : "monsters")>> almost as good as people, sometimes better. Their instinct-driven, animalistic mating makes you shiver. <<He>> looks away, wide-eyed.
+			<br><br>
+		<<elseif _kinkType is 4 and $tentacletrait gte 1>>
+			You whisper to Kylar that you've fantasised about being accosted by a hoard of tentacles to have their way with you. Writhing, thrusting, wrapping around you and using your every hole to obey their primal urges. <<He>> looks away, blushing.
+		<<elseif _kinkType is 3 and $voretrait gte 1>>
+			You whisper to Kylar that you've found yourself swallowed by all sorts of creatures, and that you didn't quite hate it. The flesh rippling against your skin, caressing every inch of your body as you slide down, gives you goosebumps whenever you recall it. <<He>> looks away, wide-eyed.
+		<<elseif _kinkType is 2 and $masochism_level gte 1>>
+			<<if $masochism_level gte 3>>
+				You whisper to Kylar that you really like being hurt. The thought of someone using you, smacking you, spanking you, hitting you, leaving you quivering on the floor, drives you wild. <<He>> looks away, frowning.
+			<<else>>
+				You whisper to Kylar that you like being hurt. The thought of someone slapping you, or digging their fingernails into you, makes you blush. <<He>> looks away, blushing.
+			<</if>>
+		<<elseif _kinkType is 1 and $milkdranktrait gte 1>>
+			You whisper to Kylar that you really love breast milk. Besides the obvious appeal of sucking on someone's breast, the milk is always warm, creamy, and delicious.
+			<<if $trauma gte ($traumamax / 5) * 3>>
+				Sometimes, when they stroke the back of your head while you're suckling, it makes you feel wanted. Almost like you're with... You cut yourself off.
+			<</if>>
+			<<He>> looks away, <<print (_kylar.pronoun is "m" ? "frowning" : "blushing")>>.
+		<<else>>
+			You whisper to Kylar one of your deepest fantasies. <<He>> looks away, <<print either("blushing","frowning","wide-eyed","sweating","hiding a gleeful smile")>>.
+		<</if>>
+	<</addinlineevent>>
+<</if>>
+<<runeventpool>>
+<<promiscuity1>>
+
+<<if ($location is "park" or $bus is "starfish") and _kylar.love gte 80 and _kylar.lust gte 80 and $daily.kylar.invite isnot "home">>
+	<<set $daily.kylar.invite to "home">>
+	Kylar stares at you, eyes full of intensity. It melts away at once. "Um... do you..." <<he>> manages before averting <<his>> eyes. "D-do you want to go somewhere! Somewhere... else... so we can, um..."
+	<br><br>
+
+	<<link [[Invite Kylar to the orphanage (0:15)|Kylar Invite]]>><<unset $kylar_action>><<pass 15>><</link>><<promiscuous1>>
+	<br>
+	<<link [[Decline|Kylar Invite Decline]]>><<npcincr Kylar love -1>><<npcincr Kylar rage 1>><</link>><<llove>><<gksuspicion>>
+	<br>
+<<else>>
+	<<kylarOptions>>
+<</if>>
+
+
+
+:: Kylar Invite
+<<set $outside to 0>><<set $location to "home">><<effects>>
+
+You lean close, and whisper your invite into Kylar's ear. <<He>> shivers.
+<<promiscuity1>>
+
+Kylar hugs your arm on the walk over, as if afraid you'll run.
+
+<<if $rng gte 81>>
+	No one bothers you until you arrive at the orphanage itself. "What's that thing doing here?" a <<generatey2>><<person2>><<person>> asks as you enter the main hall. Anger flashes across Kylar's face, but <<person1>><<he>> doesn't say anything.
+	<br><br>
+
+	<<link [[Defend Kylar|Kylar Orphanage Defend]]>><<status -10>><<npcincr Kylar love 1>><</link>><<llcool>><<glove>>
+	<br>
+	<<link [[Berate Kylar|Kylar Orphanage Berate]]>><<npcincr Kylar love -3>><</link>><<lllove>>
+	<br>
+	<<if $syndromekylar gte 1>>
+		<<link [[Angrily defend Kylar|Kylar Orphanage Angry]]>><<status -10>><<npcincr Kylar love 3>><</link>><<llcool>><<gglove>>
+		<br>
+	<</if>>
+<<else>>
+	No one bothers you. You arrive at the orphanage, and lead Kylar to your room.
+	<br><br>
+
+	<<link [[Next|Kylar Orphanage]]>><</link>>
+	<br>
+<</if>>
+
+:: Kylar Invite Decline
+<<effects>>
+
+<<if $speech_attitude is "meek">>
+	"S-sorry," you say, afraid of hurting <<his>> feelings. "I'm not in the mood."
+<<elseif $speech_attitude is "bratty">>
+	"Not today," you say. "You shouldn't be so scared to ask."
+<<else>>
+	"I'm having a good time here," you say.
+<</if>>
+Kylar nods, but doesn't say anything in response.
+<br><br>
+
+<<kylarOptions>>
+
+:: Kylar Orphanage Defend
+<<effects>>
+
+<<person1>>
+<<if $speech_attitude is "meek">>
+	"<<Hes>> with me," you say. "You should be nicer to people."
+<<elseif $speech_attitude is "bratty">>
+	"<<Hes>> with me," you say. "Now get out of our way."
+<<else>>
+	"<<Hes>> with me," you say.
+<</if>>
+<br><br>
+
+"Fine," the <<person2>><<person>> sneers. "But I'm blaming you if someone poisons the food."
+<br><br>
+
+You walk past the <<person>> and continue to your room. Kylar follows close behind, as if afraid of being obstructed again.
+<br><br>
+<<endevent>><<npc Kylar>><<person1>>
+
+<<link [[Next|Kylar Orphanage]]>><</link>>
+<br>
+
+:: Kylar Orphanage Berate
+<<effects>>
+
+<<person1>>
+<<if $speech_attitude is "meek">>
+	"Go away," you say to Kylar. "If you touch me I'll scream."
+<<elseif $speech_attitude is "bratty">>
+	"Get out, creep," you say to Kylar. "Before I beat your ass."
+<<else>>
+	"Don't come in here without invite," you say to Kylar. "Please leave."
+<</if>>
+<br><br>
+Kylar shrinks away from you, looking betrayed.
+<br><br>
+"You heard <<phim>>," the <<person2>><<person>> says. "I don't want to see you here again." <<He>> leaves through one of the corridors.
+<br><br>
+
+<<endevent>>
+<<npc Kylar>><<person1>>
+Kylar turns to leave as well, but you grab <<his>> arm. "I didn't mean it," you say. "Just try not to be seen again." <<He>> nods, but still looks hurt. You lead <<him>> to your room.
+<br><br>
+
+<<link [[Next|Kylar Orphanage]]>><</link>>
+<br>
+
+
+:: Kylar Orphanage Angry
+<<effects>>
+
+<<person1>>
+<<if $speech_attitude is "meek">>
+	"Y-you should show my <<girlfriend_npc>> more respect," you say.
+<<elseif $speech_attitude is "bratty">>
+	"Piss off," you say, pulling Kylar closer to you. "This is my <<girlfriend_npc>>. Show some respect."
+<<else>>
+	"This is my <<girlfriend_npc>>," you say. "Have some respect."
+<</if>>
+<br><br>
+
+"Um! Yeah! Th-that!" Kylar says. "D-don't mess with <<phim>>...!"
+<br><br>
+
+The <<person2>><<person>> sneers in disgust. "Fine. But I'm blaming you if someone poisons the food."
+<br><br>
+
+You walk past the <<person>> and continue to your room. Kylar clings to you, as if for safety.
+<br><br>
+
+<<endevent>><<npc Kylar>><<person1>>
+
+<<link [[Next|Kylar Orphanage]]>><</link>>
+<br>
+
+:: Kylar Orphanage
+<<effects>>
+
+You sit on your bed, and pat the sheet beside you. Kylar scans the room as <<he>> sits. <<He>> seems less nervous now you're alone, but you can feel <<his>> pulse racing when you take <<his>> hand. <<takeHandholdingVirginity "Kylar" "romantic">>
+<br><br>
+
+<<He>> turns to face you, and bumps <<his>> forehead against yours as <<he>> leans forward for a kiss.
+<br><br>
+
+<<link [[Kiss|Kylar Orphanage Kiss]]>><<npcincr Kylar love 1>><</link>><<glove>><<kissvirginitywarning>><<NPCvirginitywarning "Kylar" "kiss">>
+<br>
+<<link [[Turn away|Kylar Orphanage Turn]]>><<npcincr Kylar love -3>><</link>><<lllove>>
+<br>
+
+:: Kylar Orphanage Turn
+<<effects>>
+
+You turn away from <<him>>. "Um! S-sorry!" <<he>> says. Overcome by nerves, <<he>> jumps to <<his>> feet. Before you can stop <<him>>, <<he>> rushes to the door, throws it open, and escapes into the corridor.
+<br><br>
+
+<<link [[Next|Bedroom]]>><<endevent>><</link>>
+<br>
+
+:: Kylar Orphanage Kiss
+<<effects>>
+
+You lean forward, and your lips meet. <<takeKissVirginity "Kylar" `($kylarenglish gte 1?"loveInterest":"romantic")`>>
+<<if _npcKissVirginTemp>>
+	<br><br>
+	<<His>> breath hitches, and <<he>> clings to you,
+<<else>>
+	<<if _pcKissVirginityTaken>>
+		<br><br>
+	<</if>>
+	<<He>> pushes <<his>> tongue into your mouth as <<his>> arms rest on your shoulders,
+<</if>>
+pushing you down to the bed.
+<br><br>
+
+<<link [[Next|Kylar Orphanage Sex]]>><<set $sexstart to 1>><</link>>
+<br>
+
+:: Kylar Orphanage Sex
+<<run statusCheck("Kylar")>>
+<<if $sexstart is 1>>
+	<<set $sexstart to 0>>
+	<<consensual>>
+	<<set $consensual to 1>>
+	<<neutral 1>>
+	<<maninit>>
+	<<set $enemytrust += 100>>
+<</if>>
+
+<<effects>>
+<<effectsman>>
+<<man>>
+<<stateman>>
+<br><br>
+<<actionsman>>
+
+<<if _combatend>>
+	<span id="next"><<link [[Next|Kylar Orphanage Sex Finish]]>><</link>></span><<nexttext>>
+<<else>>
+	<span id="next"><<link [[Next|Kylar Orphanage Sex]]>><</link>></span><<nexttext>>
+<</if>>
+
+:: Kylar Orphanage Sex Finish
+
+<<set $outside to 0>><<effects>><<run statusCheck("Kylar")>>
+<<if $enemyarousal gte $enemyarousalmax>>
+	<<ejaculation>>
+
+	<<He>> lies on top of you for a few moments, eyes closed in contentment.<<npcincr Kylar lust -20>><<lllust>>
+	<br><br>
+	<<if $orgasmcurrent is 0 and !playerChastity()>>
+		<<if _kylarStatus.includes("Rage")>>
+			After a few seconds, <<he>> backs up until <<hes>> facing your <<genitals>>. "Uuu.. you didn't cum..." <<he>> seems dejected. "Am I... bad at this...?" <<He>> shakes <<his>> head violently. "N-no! I'll... I'll make up for it, okay?"
+		<<else>>
+			After a few seconds, <<he>> backs up until <<hes>> facing your <<genitals>>. "Uuu.. you didn't cum..." <<he>> murmurs. "Even though you're the one that invited m-me... Um! I'll... make up for it, okay?"
+		<</if>>
+		<br><br>
+		<<kylarFinish>>
+		<<He>> looks like <<hes>> about to say something, but is cut off by the sound of voices from the corridor outside, making <<him>> tense up.
+	<<else>>
+		It's ended by the sound of voices from the corridor outside, making <<him>> tense once more.
+	<</if>>
+	<br><br>
+
+	<<tearful>> you sit upright, your arms around <<him>>.
+	<br><br>
+	<<clotheson>>
+	<<endcombat>>
+
+	<<npc Kylar>><<person1>>
+	<<if $exposed lte 0>>
+		<<if Weather.precipitation isnot "none">>
+			<<link [[Walk to the arcade together (0:15)|Kylar Arcade Walk]]>><<set $phase to 0>><<pass 15>><</link>>
+			<br>
+		<<else>>
+			<<link [[Walk to the park together (0:15)|Kylar Park Walk]]>><<set $phase to 0>><<pass 15>><</link>>
+			<br>
+		<</if>>
+	<</if>>
+	<<link [[Lie down in bed|Kylar Orphanage Nap]]>><</link>>
+	<br>
+	<<link [[Bid Kylar goodbye|Kylar Orphanage Leave]]>><</link>>
+	<br>
+<<elseif $enemyhealth lte 0>>
+	Kylar tumbles from the bed. <<He>> climbs to <<his>> feet, <<his>> face a mix of anger and longing. <<His>> nerves get the better of <<him>>, and <<he>> bolts from the room.<<lllove>><<npcincr Kylar love -3>>
+	<br><br>
+	<<tearful>> you sit upright on the bed.
+	<br><br>
+	<<clotheson>>
+	<<endcombat>>
+	<<link [[Next|Bedroom]]>><</link>>
+	<br>
+<<else>>
+	"Umh... d-did I do something wrong...?" Kylar asks as <<he>> pulls away from you. <<His>> nerves get the better of <<him>>, and <<he>> bolts from the room.
+	<br><br>
+	<<tearful>> you sit upright on the bed.
+	<br><br>
+	<<clotheson>>
+	<<endcombat>>
+	<<link [[Next|Bedroom]]>><</link>>
+	<br>
+<</if>>
+
+:: Kylar Orphanage Nap
+<<effects>>
+
+<<set $kylar.timer.love -= 1>>
+You ignore the voices in the corridor and lie back down, your arms still wrapped around Kylar. <<He>> squeaks as <<hes>> pulled down next to you. "D-Do you want to go again?" <<he>> asks.
+<br><br>
+
+<<if $speech_attitude is "meek">>
+	"I just want to take a nap," you whisper. "Can you hug me?"
+<<elseif $speech_attitude is "bratty">>
+	"Shut up and cuddle me," you murmur, pulling Kylar closer.
+<<else>>
+	"Let's just take a nap for now," you whisper, pulling Kylar closer.
+<</if>>
+<br><br>
+
+<<He>> seems hesitant, but after a few seconds <<he>> nods and
+<<if $speech_attitude is "meek">>
+	pulls you into <<his>> arms. You can feel <<his>> heartbeat through <<his>> chest. It's rapid, like it's trying to escape from <<his>> chest. You wonder if yours is just as fast.
+<<else>>
+	curls into your arms, wrapping <<his>> own around your waist. <<He>> rests <<his>> head on your <<breasts>>. <<He>> can surely feel your heart beating through your chest. You wonder if <<hers>> is just as fast.
+<</if>>
+<<npcincr Kylar love 1>><<npcincr Kylar rage -1>><<stress -6>><<glove>><<lksuspicion>><<lstress>>
+<br><br>
+
+"Ehe... this is nice..." <<he>> says, sighing in contentment.
+<<if $speech_attitude is "meek">>
+	<<He>> strokes your hair with one hand, causing you to let out a sigh of your own.
+<<else>>
+	You stroke <<his>> hair with one hand, and <<he>> practically melts into you.
+<</if>>
+<br><br>
+
+<<link [[Just cuddle (0:30)|Kylar Orphanage Cuddle]]>><<trauma -12>><<set $phase to 1>><<pass 30>><</link>><<ltrauma>>
+<br>
+<<link [[Sleep|Kylar Orphanage Bed]]>><<set $kylarbed to 1>><<set $bedGuest to "Kylar">><</link>>
+
+:: Kylar Orphanage Cuddle
+<<effects>>
+
+<<endevent>>
+<<npc Kylar>><<person1>>
+
+You and Kylar lie there, entangled in each other's arms.
+<<if $phase is 1>>
+	You're partially surprised <<if $arousal gte 6000>>and a little disappointed <</if>>Kylar doesn't try to get handsy with you- <<his>> arms remain wrapped around your <<if $submissive gte 1150 or $daily.kylar.sleepRape is true>>shoulders<<else>>waist<</if>>.
+<</if>>
+You can feel <<his>> breath, now stabilised and calm, against your skin.
+<br><br>
+
+<<if ($kylarenglish is undefined or $kylarenglish is 0) and $kylar.timer.love lte 0>>
+	<span class="lewd">"Ehe... I love you,"</span> <<he>> murmurs into your <<if $submissive gte 1150 or $daily.kylar.sleepRape is true>>hair<<else>>chest<</if>>.
+	<br><br>
+
+	It takes <<him>> a few seconds to realise what <<he>> said. When <<he>> does, <<he>> stiffens, before jolting away from you and almost falling off the bed. "Uhm! I-I didn't mean that!" <<he>> stammers. "I-... Um, I mean... I d-did! But not like, you know, romantically! Well, um, it actually is romantic, but I didn't— I just— I didn't mean to say— You aren't meant to know!" <<Hes>> panicking.
+	<br><br>
+
+	<<link [[Kiss|Kylar Orphanage Cuddle Kiss]]>><<npcincr Kylar love 10>><<npcincr Kylar lust 5>><<npcincr Kylar rage -10>><</link>><<ggglove>><<gglust>><<llksuspicion>>
+	<br>
+	<<link [[Berate|Kylar Orphanage Cuddle Berate]]>><<set $kylar.timer.love to random(2,5)>><<npcincr Kylar love -5>><</link>><<lllove>>
+	<br>
+	<<link [[Pretend it didn't happen|Kylar Orphanage Cuddle Ignore]]>><<npcincr Kylar love -1>><<npcincr Kylar rage 1>><</link>><<llove>><<gksuspicion>>
+
+<<else>>
+	<<if $phase is 0>>
+		Kylar clings to you for a few minutes, not wanting to get up.
+	<</if>>
+	Eventually <<he>> untangles <<himself>> from you, looking disappointed. "Huuu... I probably shouldn't stay here much l-longer..." <<he>> says.<<if Time.hour gte 18 or Time.hour lte 7>> "Th-they're waiting for me, so..."<</if>> You <<if $phase isnot 2>>push yourself into a sitting position and <</if>>look at <<him>>. <<His>> hair is sticking to <<his>> face. You reach forward and brush it away, and <<he>> smiles.
+	<br><br>
+
+	<<if Time.hour lt 18 and Time.hour gte 7>>
+		<<if Weather.precipitation isnot "none">>
+			<<link [[Walk to the arcade together (0:15)|Kylar Arcade Walk]]>><<pass 15>><</link>>
+		<br>
+		<<else>>
+			<<link [[Walk to the park together (0:15)|Kylar Park Walk]]>><<pass 15>><</link>>
+			<br>
+		<</if>>
+	<<else>>
+		<<if $syndromekylar is 1>>
+			<<kylarmanoricon>><<link [["Walk to the manor together (0:10)"|Kylar Walk Manor]]>><<pass 10>><</link>>
+			<br>
+		<</if>>
+	<</if>>
+
+	<<link [[Bid Kylar goodbye|Kylar Orphanage Leave]]>><</link>>
+<</if>>
