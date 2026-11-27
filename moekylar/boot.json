@@ -1,0 +1,6 @@
+{
+  "name": "moekylar",
+  "version": "1.0.0",
+  "scriptFileList": [],
+  "tweeFileList": ["main.twee", "special.twee", "widgets.twee"] 
+}
