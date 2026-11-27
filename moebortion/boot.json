@@ -2,5 +2,25 @@
   "name": "moebortion",
   "version": "1.0.0",
   "scriptFileList": [],
-  "tweeFileList": ["killdat.twee"] 
+  "tweeFileList": ["killdat.twee"],
+  "addonPlugin": [
+    {
+      "modName": "TweeReplacer",
+      "addonName": "TweeReplacerAddon",
+      "modVersion": "^1.6.1",
+      "params": [
+        {
+          "passage": "Hospital Foyer",
+          "findString": "<<for _active_bodypart range setup.bodyparts>>",
+          "replace": "<<set _pregnancy to getPlayerPregnancy()>>\n\t\t<<if playerAwareTheyArePregnant() and _pregnancy and between(pregnancyProgress(_pregnancy), 0.01, 0.67)>>\n\t\t\t\t<<socialiseicon 'ask'>><<link [[Enquire about terminating the pregnancy (0:10)|Hospital Termination]]>><</link>>\n\t\t\t<br>\n\t\t<</if>>\n\t\t<<for _active_bodypart range setup.bodyparts>>"
+        }
+      ]
+    }
+  ],
+  "dependenceInfo": [
+    {
+      "modName": "TweeReplacer",
+      "version": "^1.6.1"
+    }
+  ]
 }

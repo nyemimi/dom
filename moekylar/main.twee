@@ -49,7 +49,7 @@ You wait until no one is paying attention to the <<person1>><<personsimple>> any
 <</if>>
 <br><br>
 
-"Th-thank you," <<person1>><<he>> stutters. "I-I'm—" <<He>> looks at you, but blushes and looks away. "K-kylar!" You thought <<he>> was younger than you, but <<he>> seems the same age.
+"Th-thank you," <<person1>><<he>> stutters. "I-I'm—" <<He>> looks at you, but blushes and looks away. "K-Kylar..." You thought <<he>> was younger than you, but <<he>> seems the same age.
 <<switch $bodysize>>
 	<<case 0>>
 		Even with your small stature, <<hes>> only a little taller than you.
